@@ -6,7 +6,7 @@
 
 int number_of_packets = 0;
 
-void usage
+void usage()
 {
 	printf("usage : a./out -i netmap:<network interface>/<flag>\n");
 	printf("\t\tex) $ ./a.out -i netmap:ix0/rt");
@@ -16,7 +16,7 @@ void usage
 int main(int argc, char *argv[]) 
 {
 	int c;
-    char interface[] = "";
+    char interface[] = NULL;
 
 	while ((c = getopt(argc, argv, "i:")) != -1) {
 		switch (c) {
