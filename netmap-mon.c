@@ -1,8 +1,10 @@
 #include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
 #include <poll.h>
-#include <net/netmap_user.h>
 
 #define NETMAP_WITH_LIBS
+#include <net/netmap_user.h>
 
 int number_of_packets = 0;
 
@@ -16,17 +18,17 @@ void usage()
 int main(int argc, char *argv[]) 
 {
 	int c;
-    char interface[] = NULL;
+    char interface[16] = "";
 
 	while ((c = getopt(argc, argv, "i:")) != -1) {
 		switch (c) {
 			case 'i' :	interface = optarg;
-						break;
+			         	break;
 		}
 	}
 
-	if (interface == NULL) {
-		printf("Error: interface is not specified!");
+	if (!strcmp(interface, "\0")) {
+		printf("Error: interface is not specified!\n");
 		exit(1);
 	}
 
